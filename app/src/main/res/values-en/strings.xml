@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">WeaterTestApp</string>
+    <string name="input_city">Enter the name of the city</string>
+    <string name="show_weather">Weather in the city</string>
+    <string name="send_title">Get the weather for the city</string>
+    <string name="error_tittle">Error:</string>
+    <string name="error_undefined">Error is undefined</string>
+    <string name="weather_tittle">Weather data:</string>
+    <string name="weather_temp">Temperature: %s°C</string>
+    <string name="weather_feelsLike">Feels like: %s°C</string>
+    <string name="weather_pressure">Atmosphere pressure: %s hPa</string>
+    <string name="weather_humidity">Humidity: %s</string>
+    <string name="wait_tittle">Wait…</string>
+    <string name="empty_city">City name not entered</string>
+</resources>

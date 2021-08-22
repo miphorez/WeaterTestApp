@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">WeaterTestApp</string>
+    <string name="input_city">Введите название города</string>
+    <string name="show_weather">Погода в городе</string>
+    <string name="send_title">Получить погоду для города</string>
+    <string name="error_tittle">Ошибка:</string>
+    <string name="error_undefined">Неопределенная ошибка</string>
+    <string name="weather_tittle">Данные о погоде:</string>
+    <string name="weather_temp">Температура: %s°C</string>
+    <string name="weather_feelsLike">Ощущается как: %s°C</string>
+    <string name="weather_pressure">Атмосферное давление: %s hPa</string>
+    <string name="weather_humidity">Влажность: %s</string>
+    <string name="wait_tittle">Подождите…</string>
+    <string name="empty_city">Название города не введено</string>
+</resources>
