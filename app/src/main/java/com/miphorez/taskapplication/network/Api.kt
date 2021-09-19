@@ -1,7 +1,6 @@
 package com.miphorez.taskapplication.network
 
 import com.miphorez.taskapplication.model.WeatherRemote
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 

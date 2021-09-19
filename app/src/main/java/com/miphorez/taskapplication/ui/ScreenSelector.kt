@@ -15,13 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.miphorez.taskapplication.MainActivityStat
 import com.miphorez.taskapplication.MainActivityViewModel
-import com.miphorez.taskapplication.StatusEnum
-import com.miphorez.taskapplication.getUiStatByActivityState
 import com.miphorez.taskapplication.ui.screen.ScreenInputCity
 import com.miphorez.taskapplication.ui.screen.ScreenShowWeather
 import org.koin.androidx.compose.getViewModel
@@ -31,26 +26,24 @@ fun ScreensByUiState() {
     val model = getViewModel<MainActivityViewModel>()
 
     val uiState by model.uiState.observeAsState(MainActivityStat.InputCityStat)
-    val enumState = getUiStatByActivityState(uiState)
-    val navController = rememberNavController()
 
     Surface {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = stringResource(id = enumState.titleRes)) },
-                    navigationIcon = if (uiState == MainActivityStat.ShowWeatherStat) navController.backIcon else null,
+                    title = { Text(text = stringResource(id = uiState.titleRes)) },
+                    navigationIcon = if (uiState == MainActivityStat.ShowWeatherStat) backIcon else null,
                     contentColor = Color.White
                 )
             },
             content = {
-                CurrentContent(model, enumState)
+                CurrentContent(model, uiState)
             }
         )
     }
 }
 
-private val NavHostController.backIcon: @Composable (() -> Unit)
+private val backIcon: @Composable (() -> Unit)
     get() = {
         val model = getViewModel<MainActivityViewModel>()
         IconButton(onClick = {
@@ -61,7 +54,7 @@ private val NavHostController.backIcon: @Composable (() -> Unit)
     }
 
 @Composable
-private fun CurrentContent(model: MainActivityViewModel, option: StatusEnum) {
+private fun CurrentContent(model: MainActivityViewModel, stat: MainActivityStat) {
 
     val cityName by model.cityName.observeAsState()
 
@@ -69,19 +62,19 @@ private fun CurrentContent(model: MainActivityViewModel, option: StatusEnum) {
         modifier = Modifier
             .wrapContentHeight(align = Alignment.CenterVertically)
     ) {
-        when (option) {
-            StatusEnum.INPUT_CITY -> ScreenInputCity(
+        when (stat) {
+            MainActivityStat.InputCityStat -> ScreenInputCity(
                 cityName = cityName ?: "",
                 onValueChange = { inputText ->
                     model.setCityName(inputText)
                 },
-                onImeAction = { model.getWeatherForCity()},
+                onImeAction = { model.getWeatherForCity() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 50.dp)
             )
 
-            StatusEnum.SHOW_WEATHER -> ScreenShowWeather(
+            MainActivityStat.ShowWeatherStat -> ScreenShowWeather(
                 model = model,
                 modifier = Modifier
                     .fillMaxWidth()

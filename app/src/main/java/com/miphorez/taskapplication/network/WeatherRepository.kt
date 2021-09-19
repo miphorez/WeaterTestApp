@@ -14,7 +14,6 @@ class WeatherRepository constructor(private val api: Api) {
                 queryLang = "ru",
                 queryUnits = "metric",
                 queryKey = API_KEY,
-//                queryKey = WEATHER_API_KEY,
             )
             LCE.Success(data = wrapperToWeatherResult(apiResult))
         } catch (e: Exception) {

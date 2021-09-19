@@ -1,7 +1,6 @@
 package com.miphorez.taskapplication
 
 import android.content.Context
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,18 +24,11 @@ class MainActivityViewModel(
     private val _weather = MutableLiveData<WeatherResult>()
     val weather: LiveData<WeatherResult> = _weather
 
-    private val _cityName = MutableLiveData<String>()
+    private val _cityName = MutableLiveData("Minsk")
     val cityName: LiveData<String> = _cityName
 
     init {
         _uiState.value = MainActivityStat.InputCityStat
-    }
-
-    fun setNewActivityStat(status: StatusEnum) {
-        when (status) {
-            StatusEnum.INPUT_CITY -> _uiState.value = MainActivityStat.InputCityStat
-            StatusEnum.SHOW_WEATHER -> _uiState.value = MainActivityStat.ShowWeatherStat
-        }
     }
 
     private fun getWeather() {
